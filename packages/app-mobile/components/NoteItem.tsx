@@ -20,6 +20,7 @@ import { DialogContext } from './DialogManager';
 import Icon from './Icon';
 import isSyncDisabledConflict from '@joplin/lib/services/noteList/isSyncDisabledConflict';
 import { noteIsLockedInShare } from '@joplin/lib/models/utils/readOnly';
+import NoteBodyPreview from './NoteBodyPreview';
 
 interface Props {
 	dispatch: Dispatch;
@@ -29,6 +30,7 @@ interface Props {
 	selectedNoteIds: string[];
 	highlightedWord?: string;
 	index?: number;
+	card?: boolean;
 }
 
 const useStyles = (themeId: number, showTopBorder: boolean) => {
@@ -80,6 +82,21 @@ const useStyles = (themeId: number, showTopBorder: boolean) => {
 		selectionWrapperSelected.marginVertical = -1;
 
 		return StyleSheet.create({
+			card: {
+				borderWidth: 1,
+				borderColor: theme.dividerColor,
+				borderRadius: 16,
+				backgroundColor: theme.backgroundColor,
+				overflow: 'hidden',
+				minHeight: 124,
+			},
+			cardSelected: {
+				borderColor: theme.color,
+				backgroundColor: theme.selectedColor,
+			},
+			cardContent: { flex: 1 },
+			cardTitle: { fontWeight: '600' },
+			cardSelectionWrapper: { flex: 1, flexDirection: 'row' },
 			listItemDivider,
 			listItemText,
 			titleRow: {
@@ -224,7 +241,7 @@ const NoteItemComponent: React.FC<Props> = memo(props => {
 		accessibilityLabel={_('to-do: %s', noteTitle)}
 	/> : null;
 
-	const titleElement = <Text style={listItemTextStyle}>{displayedNoteTitle}</Text>;
+	const titleElement = <Text numberOfLines={props.card ? 3 : undefined} style={[listItemTextStyle, props.card && styles.cardTitle]}>{displayedNoteTitle}</Text>;
 
 	const pressableProps = {
 		style: isTodo ? styles.listItemPressableWithCheckbox : styles.listItemPressableWithoutCheckbox,
@@ -234,12 +251,12 @@ const NoteItemComponent: React.FC<Props> = memo(props => {
 		...onLongPressProps,
 	};
 	return (
-		<View style={opacityStyle}>
-			<View style={styles.listItemDivider}/>
+		<View style={[opacityStyle, props.card && styles.card, props.card && isSelected && styles.cardSelected]}>
+			{!props.card && <View style={styles.listItemDivider}/>}
 			<MultiTouchableOpacity
 				{...pressableProps}
 				containerProps={{
-					style: selectionWrapperStyle,
+					style: props.card ? styles.cardSelectionWrapper : selectionWrapperStyle,
 				}}
 				onPress={onPress}
 				beforePressable={todoCheckbox}
@@ -251,6 +268,7 @@ const NoteItemComponent: React.FC<Props> = memo(props => {
 						{titleElement}
 					</View>
 				) : titleElement}
+				{props.card && <View style={styles.cardContent}><NoteBodyPreview note={note} themeId={props.themeId} /></View>}
 			</MultiTouchableOpacity>
 		</View>
 	);

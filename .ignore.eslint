@@ -815,6 +815,8 @@ packages/app-mobile/components/KeyboardAvoidingView.js
 packages/app-mobile/components/Modal.js
 packages/app-mobile/components/ModalDialog.js
 packages/app-mobile/components/NestableFlatList.js
+packages/app-mobile/components/NoteBodyPreview.test.js
+packages/app-mobile/components/NoteBodyPreview.js
 packages/app-mobile/components/NoteBodyViewer/NoteBodyViewer.test.js
 packages/app-mobile/components/NoteBodyViewer/NoteBodyViewer.js
 packages/app-mobile/components/NoteBodyViewer/hooks/useOnMessage.js
@@ -841,6 +843,7 @@ packages/app-mobile/components/NoteEditor/hooks/useEditorCommandHandler.js
 packages/app-mobile/components/NoteEditor/testing/createTestEditorProps.js
 packages/app-mobile/components/NoteEditor/types.js
 packages/app-mobile/components/NoteItem.js
+packages/app-mobile/components/NoteList.test.js
 packages/app-mobile/components/NoteList.js
 packages/app-mobile/components/ProfileSwitcher/ProfileEditor.js
 packages/app-mobile/components/ProfileSwitcher/ProfileSwitcher.js

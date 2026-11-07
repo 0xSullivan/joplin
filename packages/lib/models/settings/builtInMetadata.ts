@@ -1119,6 +1119,16 @@ const builtInMetadata = (Setting: typeof SettingType) => {
 		},
 		uncompletedTodosOnTop: { value: true, type: SettingItemType.Bool, storage: SettingStorage.File, isGlobal: true, section: 'note', public: true, appTypes: [AppType.Cli], label: () => _('Uncompleted to-dos on top') },
 		showCompletedTodos: { value: true, type: SettingItemType.Bool, storage: SettingStorage.File, isGlobal: true, section: 'note', public: true, appTypes: [AppType.Cli], label: () => _('Show completed to-dos') },
+		'notes.mobileLayout': {
+			value: 'grid',
+			type: SettingItemType.String,
+			storage: SettingStorage.File,
+			isGlobal: true,
+			public: false,
+			appTypes: [AppType.Mobile],
+			isEnum: true,
+			options: () => ({ grid: _('Grid'), list: _('List') }),
+		},
 		'notes.sortOrder.field': {
 			value: 'user_updated_time',
 			type: SettingItemType.String,

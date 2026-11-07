@@ -1,0 +1,23 @@
+Android note cards test APK for PR #1
+https://github.com/0xSullivan/joplin/pull/1
+
+Source commit: 34556509ec9f97e46a0fbb73ce6c30824a00abf1
+Joplin 3.7.11, ARM64 (arm64-v8a), Android 7.0 / API 24 or newer.
+Standalone profileable build, signed with the Android debug certificate.
+Uses Joplin's standard application ID; use a test installation.
+
+Build with JDK 21 and the project's Android SDK/NDK dependencies installed:
+cd packages/app-mobile/android
+NODE_ENV=production ./gradlew assembleProfileable -PreactNativeArchitectures=arm64-v8a
+
+Verification:
+- Mobile and shared-library TypeScript compilation passed.
+- ESLint and repository pre-commit checks passed.
+- All 12 component tests passed.
+- Android build and Android lint passed.
+- APK signature and 16 KB ZIP alignment verified.
+- APK contains only arm64-v8a native libraries and a bundled JavaScript runtime.
+- Checksum is included in joplin-note-cards-arm64-v8a.apk.sha256.
+
+The PNG files show a browser render of the Android card layout.
+Device installation and runtime testing remain pending.

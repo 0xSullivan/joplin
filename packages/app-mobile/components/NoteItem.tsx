@@ -94,7 +94,6 @@ const useStyles = (themeId: number, showTopBorder: boolean) => {
 				borderColor: theme.color,
 				backgroundColor: theme.selectedColor,
 			},
-			cardContent: { flex: 1 },
 			cardTitle: { fontWeight: '600' },
 			cardSelectionWrapper: { flex: 1, flexDirection: 'row' },
 			listItemDivider,
@@ -268,7 +267,7 @@ const NoteItemComponent: React.FC<Props> = memo(props => {
 						{titleElement}
 					</View>
 				) : titleElement}
-				{props.card && <View style={styles.cardContent}><NoteBodyPreview note={note} themeId={props.themeId} /></View>}
+				{props.card && <NoteBodyPreview note={note} themeId={props.themeId} />}
 			</MultiTouchableOpacity>
 		</View>
 	);

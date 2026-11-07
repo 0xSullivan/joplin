@@ -95,7 +95,7 @@ const useStyles = (themeId: number, showTopBorder: boolean) => {
 				backgroundColor: theme.selectedColor,
 			},
 			cardTitle: { fontWeight: '600' },
-			cardSelectionWrapper: { flex: 1, flexDirection: 'row' },
+			cardSelectionWrapper: { minHeight: 124, flexDirection: 'row' },
 			listItemDivider,
 			listItemText,
 			titleRow: {
